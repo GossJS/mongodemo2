@@ -6,11 +6,12 @@ import fs from 'fs';
 import appSrc from './app.js';
 import CORS from './CORS.js';
 import UserModel from './models/User.js';
+import UserController from './routes/UserController.js';
 
 dot.config({ path: './.env' });
 const { URL } = process.env;
 const User = UserModel(m);
-const app = appSrc(express, bodyParser, fs, CORS, User);
+const app = appSrc(express, bodyParser, fs, CORS, User, UserController);
 
 try {
     await m.connect(URL, { useNewUrlParser: true, useUnifiedTopology: true });
